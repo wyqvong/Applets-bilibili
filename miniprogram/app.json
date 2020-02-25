@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index2/index2",
+    "pages/index3/index3",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -12,8 +14,7 @@
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
-    "pages/im/room/room",
-    "pages/index2/index2"
+    "pages/im/room/room"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -37,6 +38,12 @@
       {
         "pagePath": "pages/index2/index2",
         "text": "首页2",
+        "iconPath": "icons/index.png",
+        "selectedIconPath": "icons/index_active.png"
+      },
+      {
+        "pagePath": "pages/index3/index3",
+        "text": "页面3",
         "iconPath": "icons/index.png",
         "selectedIconPath": "icons/index_active.png"
       }
