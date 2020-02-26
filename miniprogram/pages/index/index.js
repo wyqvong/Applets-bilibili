@@ -4,22 +4,34 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //被点击的首页导航的菜单索引
+    currentIndexNav: 0,
     //首页导航数据
-    navList:[]
+    navList: []
   },
+  //点击首页导航按钮
+  activeNav(e) {
+    // console.log(123)
+    this.setData({
+      currentIndexNav: e.target.dataset.index
+    })
+  },
+
+
+
   /**
    * 获取首页导航数据
    */
-  getNavList(){
-    let that =this
+  getNavList() {
+    let that = this
     //利用小程序内置发送请求的方法
     wx.request({
-      url:"https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/navList",
-      success(res){
+      url: "https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/navList",
+      success(res) {
         // console.log(res)
-        if(res.data.code===0){
-          that.setDate({
-            navList:res.data.data.navList
+        if (res.data.code === 0) {
+          that.setData({
+            navList: res.data.data.navList
           })
         }
       }
@@ -29,7 +41,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     //获取首页导航数据
     this.getNavList()
   },
@@ -37,49 +49,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-    
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
+  onShareAppMessage: function() {
+
   }
 })

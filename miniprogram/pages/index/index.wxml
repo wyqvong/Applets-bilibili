@@ -4,8 +4,10 @@
     <!-- 首页导航 -->
     <view class="nav_wrap">
         <!-- 自己滚动区域的组件 -->
-        <scroll-view>
-            
+        <scroll-view class="nav" scroll-x="{{true}}">
+            <view bindtap="activeNav" data-index="{{index}}" class="nav_item {{index===currentIndexNav?'active':''}}" wx:for="{{navList}}" wx:key="{{index}}">
+                {{item.text}}
+            </view>
         </scroll-view>
     </view>
 </view>
