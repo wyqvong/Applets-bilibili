@@ -58,7 +58,7 @@ page{
 }
 .video_img .video_info{
   position: absolute;
-  bottom: 0;
+  bottom: 10rpx;
   left: 0;
   width: 100%;
   display: flex;
