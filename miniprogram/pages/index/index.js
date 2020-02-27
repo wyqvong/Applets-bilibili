@@ -7,8 +7,13 @@ Page({
     //被点击的首页导航的菜单索引
     currentIndexNav: 0,
     //首页导航数据
-    navList: []
+    navList: [],
+    //轮播图数据
+    swiperList: [],
+    //视频列表数据
+    videosList: []
   },
+
   //点击首页导航按钮
   activeNav(e) {
     // console.log(123)
@@ -37,61 +42,111 @@ Page({
       }
     })
   },
+  /**
+   * 
+   * 获取轮播图数据 
+   */
+  getSwiperList() {
+    let that = this
+    //利用小程序内置发送请求的方法
+    wx.request({
+      url: "https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/Swiper",
+      success(res) {
+        // console.log(res)
+        if (res.data.code === 0) {
+          that.setData({
+            swiperList: res.data.data.swiperList
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 
+   * 获取视频列表数据 
+   */
+  getVideosList() {
+    let that = this
+    //利用小程序内置发送请求的方法
+    wx.request({
+      url: "https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/videoList",
+      success(res) {
+        // console.log(res.data)
+        // if (res.code === 0) {
+        //   console.log(res.data)
+        //   that.setData({
+        //     videosList: res.data.videosList
+        //   })
+        // }
+        res.data.forEach((val, index)=> {
+          val.imgSrc = "../../images/img1.jpg"
+        })
+
+        that.setData({
+          videosList: res.data,
+        })
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     //获取首页导航数据
     this.getNavList()
+    //调用获取轮播图数据的函数
+    this.getSwiperList()
+    //调用获取视频列表数据的函数
+    this.getVideosList()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
