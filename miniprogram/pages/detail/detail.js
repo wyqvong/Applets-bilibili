@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    videoInfo:null,
+    videoInfo: null,
+    othersList: [],
+    commentList:null,
   },
 
   /**
@@ -14,22 +16,45 @@ Page({
   onLoad: function (options) {
     let videoId = options.id
     this.getCurrentVideo(videoId)
+    this.getOtherList(videoId)
+
+
   },
 
   /**
    * 根据视频id获取视频详情
    */
-  getCurrentVideo(videoId){
+  getCurrentVideo(videoId) {
     let that = this
     wx.request({
-      url: 'https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/videoDetail?id='+videoId,
-      success(res){
+      url: 'https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/videoDetail?id=' + videoId,
+      success(res) {
         // console.log(res)
-        if (res.statusCode===200){
+        if (res.statusCode === 200) {
           that.setData({
             videoInfo: res.data
           })
         }
+      }
+    })
+  },
+  // 根据推荐id获取视频
+  getOtherList(videoId) {
+    let that = this
+    wx.request({
+      url: 'https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/otherList?id=' + videoId,
+      success(res) {
+        // console.log(res)
+        if (res.statusCode === 200) {
+          res.data.forEach((val, index)=> {
+            val.imgSrc = "../../images/img1.jpg"
+          })
+          that.setData({
+            othersList: res.data
+          })
+          // console.log(that.data.othersList)
+        }
+        
       }
     })
   },
