@@ -43,4 +43,28 @@
             </view>
         </navigator>
     </view>
+    <!-- 评论列表 -->
+    <view class="comment_wrap">
+        <view class="comment_title">
+            评论 ({{commentData.commentTotalCount}})
+        </view>
+        <view class="comment_list">
+            <view class="comment_item">
+                <!-- 左侧 -->
+                <view class="comment_user">
+                    <image src="{{commentList.userIconSrc}}" mode="widthFix" />
+                </view>
+                <!-- 右侧 -->
+                <view class="comment_info">
+                    <view class="comment_detail">
+                        <text class="author">{{commentList.username}}</text>
+                        <text class="date">{{commentList.commentdate}}</text>
+                    </view>
+                    <view class="comment_content">
+                        {{commentList.commentInfo}}
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

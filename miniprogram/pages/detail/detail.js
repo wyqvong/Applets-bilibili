@@ -7,7 +7,7 @@ Page({
   data: {
     videoInfo: null,
     othersList: [],
-    commentList:null,
+    commentList: null,
   },
 
   /**
@@ -17,7 +17,7 @@ Page({
     let videoId = options.id
     this.getCurrentVideo(videoId)
     this.getOtherList(videoId)
-
+    this.getCommentList(videoId)
 
   },
 
@@ -38,6 +38,7 @@ Page({
       }
     })
   },
+
   // 根据推荐id获取视频
   getOtherList(videoId) {
     let that = this
@@ -46,7 +47,7 @@ Page({
       success(res) {
         // console.log(res)
         if (res.statusCode === 200) {
-          res.data.forEach((val, index)=> {
+          res.data.forEach((val, index) => {
             val.imgSrc = "../../images/img1.jpg"
           })
           that.setData({
@@ -54,11 +55,29 @@ Page({
           })
           // console.log(that.data.othersList)
         }
-        
+
       }
     })
   },
-
+  /**
+     * 
+     * 评论列表
+     */
+  getCommentList(videoId) {
+    let that = this;
+    wx.request({
+      url: 'https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/commentLIst?id=' + videoId,
+      success(res) {
+        console.log(res)
+        if (res.statusCode === 200) {
+            res.data.userIconSrc = "../../images/img1.jpg"
+          that.setData({
+            commentList: res.data
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
